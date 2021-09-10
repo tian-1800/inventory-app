@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1= category.name
+
+  p Items in this category: #{ items.length }
+    hr
+    dl
+      each item in items 
+        dt 
+          a(href=item.url) #{ item.name }
+        dd In stock: #{ item.qtyInStock }
