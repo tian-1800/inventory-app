@@ -7,7 +7,7 @@ const logger = require("morgan");
 const indexRouter = require("./routes/index");
 const inventoryRouter = require("./routes/inventory");
 
-const { password, dbName } = require("./node_modules/credential");
+const { password, dbName } = require("./sensitive/credential");
 
 const app = express();
 const mongoose = require("mongoose");
@@ -26,8 +26,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/", indexRouter);
-app.use("/inventory", inventoryRouter);
+app.use("/", inventoryRouter);
+// app.use("/category", inventoryRouter);
+// app.use("/items", inventoryRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

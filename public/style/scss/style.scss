@@ -1,0 +1,31 @@
+@import "__config";
+
+.page-container {
+  display: flex;
+  width: 100vw;
+}
+
+.sidebar {
+  // border-top: 1px solid #111;
+  max-width: 400px;
+  padding: 20vh 50px;
+  background-color: #122;
+  height: 100vh;
+
+  &__item {
+    padding: 10px 0;
+  }
+
+  &__separator {
+    margin: 10px 0px 50px;
+  }
+}
+
+.main {
+  padding: 10vh 50px;
+  h1 {
+    text-align: center;
+    padding-bottom: 2rem;
+  }
+  flex-grow: 1;
+}

@@ -1,0 +1,29 @@
+$background-color: #344;
+$text-color: #eee;
+$link-color: #5cc;
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+  padding: 0;
+}
+
+body {
+  background-color: $background-color;
+  color: $text-color;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: $link-color;
+
+  &:visited {
+    color: $link-color;
+  }
+}
+
+ul {
+  list-style-type: none;
+}

@@ -16,6 +16,7 @@ router.post("/category/:id/delete", category_controller.category_delete_post);
 router.get("/category/:id/update", category_controller.category_update_get);
 router.post("/category/:id/update", category_controller.category_update_post);
 router.get("/category/:id", category_controller.category_detail);
+router.get("/category", category_controller.category_list);
 
 // Item Routes
 router.get("/item/create", item_controller.item_create_get);

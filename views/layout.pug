@@ -1,7 +1,45 @@
 doctype html
-html
+html(lang='en')
   head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    title= "Inventory App"
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='/style/style.css')
   body
-    block content
+    div(class="page-container")
+      nav(class="sidebar")
+        ul(class="sidebar__list")
+          li(class="sidebar__item")
+            a(href="/category") Categories
+          li(class="sidebar__item")
+            a(href="/items") All Items
+          li 
+            hr(class="sidebar__separator")
+          li(class="sidebar__item")
+            a(href="/category/create") Create New Category
+          li(class="sidebar__item")
+            a(href="/item/create") Create New Item
+      main(class="main")
+        block content
+
+//- doctype html
+//- html(lang='en')
+//-   head
+//-     title= "Inventory App"
+//-     meta(charset='utf-8')
+//-     meta(name='viewport', content='width=device-width, initial-scale=1')
+//-     link(rel='stylesheet', href='/style/style.css')
+//-   body 
+//-     div(class="page-container")
+//-       nav(class="sidebar")
+//-         ul(class="sidebar__list")
+//-           li(class="sidebar__item")
+//-             a(href="/category") Categories
+//-           li(class="sidebar__item")
+//-             a(href="/items") All Items
+//-           li 
+//-             hr
+//-           li(class="sidebar__item")
+//-             a(href="/category/create") Create New Category
+//-           li(class="sidebar__item")
+//-             a(href="/item/create") Create New Item
