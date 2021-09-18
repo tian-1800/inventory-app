@@ -10,3 +10,8 @@ block content
         dt 
           a(href=item.url) #{ item.name }
         dd In stock: #{ item.qtyInStock }
+
+  p
+    a(href=category.url + '/delete') Delete category
+  p
+    a(href=category.url + '/update') Update category

@@ -19,6 +19,8 @@
     "pug": "2.0.0-beta11"
   },
   "devDependencies": {
-    "eslint": "^7.32.0"
+    "@prettier/plugin-pug": "^1.16.6",
+    "eslint": "^7.32.0",
+    "prettier": "^2.4.1"
   }
 }

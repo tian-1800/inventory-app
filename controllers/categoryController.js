@@ -79,11 +79,11 @@ exports.category_delete_get = function (req, res, next) {
     },
     function (err, results) {
       if (err) return next(err);
-      if (results.category === null) res.redirect("/inventory/category_list");
+      if (results.category === null) res.redirect("/category_list");
       res.render("category_delete", {
-        title: "Delete Category",
+        title: "Delete Category:",
         category: results.category,
-        items: results.category_items,
+        category_items: results.category_items,
       });
     }
   );
@@ -111,22 +111,21 @@ exports.category_delete_post = function (req, res, next) {
           req.body.categoryid,
           function deleteCategory(err) {
             if (err) return next(err);
-            res.redirect("/inventory/category");
+            res.redirect("/category");
           }
         );
     }
   );
 };
 
+const debug = require("debug")("category");
 exports.category_update_get = function (req, res, next) {
   Category.findById(req.params.id).exec(function (err, category) {
-    if (err) return next(err);
-    if (category === null) {
-      const err = new Error("Category not found");
-      err.status = 404;
+    if (err) {
+      debug("update error: " + err);
       return next(err);
     }
-    res.render("category_update", {
+    res.render("category_form", {
       title: "Update Category",
       category: category,
     });
@@ -147,15 +146,21 @@ exports.category_update_post = [
         category: category,
         errors: errors.array(),
       });
-    } else
+    } else {
+      const newCategory = new Category({
+        name: req.body.name,
+        description: req.body.description,
+        _id: req.params.id,
+      });
       Category.findByIdAndUpdate(
         req.params.id,
-        category,
+        newCategory,
         {},
-        function (err, thecategory) {
+        function (err, newCategory) {
           if (err) return next(err);
-          res.redirect(thecategory.url);
+          res.redirect(newCategory.url);
         }
       );
+    }
   },
 ];
