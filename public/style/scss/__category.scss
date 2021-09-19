@@ -1,0 +1,13 @@
+.category {
+  &-desc {
+    font-style: italic;
+    padding-bottom: 0.5rem;
+  }
+  dl {
+    padding: 1rem 0;
+
+    dd {
+      padding-bottom: 0.5rem;
+    }
+  }
+}

@@ -4,7 +4,7 @@ block content
   h1= title
   form(method="POST", action="")
     .form-group
-      label(for="input_name") Item name:
+      label(for="input_name") Item name
       input#input_name.form-control(
         type="text",
         name="name",
@@ -13,7 +13,7 @@ block content
         value=undefined === item ? '' : item.name
       )
     .form-group
-      label(for="item-description") Item Description:
+      label(for="item-description") Item Description
       input#item-description.form-control(
         type="text",
         name="description",
@@ -21,7 +21,7 @@ block content
         value=undefined === item ? '' : item.description
       )
     .form-group
-      label(for="category") Category :
+      label(for="category") Category
       select#category.form-control(
         type="select",
         placeholder="Select category",
@@ -37,7 +37,7 @@ block content
           else
             option(value=category._id) #{ category.name }
     .form-group
-      label(for="price") Item Price:
+      label(for="price") Item Price
       input#price.form-control(
         type="number",
         name="price",
@@ -45,7 +45,7 @@ block content
         value=item ? item.price : 0
       )
     .form-group
-      label(for="qtyInStock") Quantity In stock:
+      label(for="qtyInStock") Quantity in stock
       input#qtyInStock.form-control(
         type="number",
         name="qtyInStock",

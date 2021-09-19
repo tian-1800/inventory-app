@@ -2,16 +2,17 @@ extends layout
 
 block content
   h1= category.name
-
-  p Items in this category: #{ items.length }
-    hr
+  section.category
+    p.category-desc= category.description
+    p Items in this category: #{ items.length }
+      hr
     dl
       each item in items 
         dt 
           a(href=item.url) #{ item.name }
         dd In stock: #{ item.qtyInStock }
 
-  p
-    a(href=category.url + '/delete') Delete category
-  p
-    a(href=category.url + '/update') Update category
+    p
+      a(href=category.url + '/delete') Delete category
+    p
+      a(href=category.url + '/update') Update category

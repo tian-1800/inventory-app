@@ -22,6 +22,21 @@ ul {
   list-style-type: none;
 }
 
+.item-article p:first-child {
+  padding-bottom: 2rem;
+}
+
+.category-desc {
+  font-style: italic;
+  padding-bottom: 0.5rem;
+}
+.category dl {
+  padding: 1rem 0;
+}
+.category dl dd {
+  padding-bottom: 0.5rem;
+}
+
 .page-container {
   display: flex;
   width: 100vw;
@@ -47,4 +62,28 @@ ul {
 .main h1 {
   text-align: center;
   padding-bottom: 2rem;
+}
+
+.form-group {
+  display: flex;
+  padding: 10px 0;
+}
+.form-group label {
+  width: 200px;
+}
+.form-group label:after {
+  content: ":";
+  float: right;
+  margin-right: 50px;
+}
+.form-group input {
+  line-height: 1.5rem;
+  flex-grow: 1;
+  padding: 0 1rem;
+}
+
+.btn-submit {
+  padding: 5px;
+  background-color: #eee;
+  color: #111;
 }/*# sourceMappingURL=style.css.map */

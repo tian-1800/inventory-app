@@ -1,4 +1,6 @@
 @import "__config";
+@import "__item";
+@import "__category";
 
 .page-container {
   display: flex;
@@ -28,4 +30,27 @@
     padding-bottom: 2rem;
   }
   flex-grow: 1;
+}
+
+.form-group {
+  display: flex;
+  padding: 10px 0;
+  label {
+    width: 200px;
+    &:after {
+      content: ":";
+      float: right;
+      margin-right: 50px;
+    }
+  }
+  input {
+    line-height: 1.5rem;
+    flex-grow: 1;
+    padding: 0 1rem;
+  }
+}
+.btn-submit {
+  padding: 5px;
+  background-color: #eee;
+  color: #111;
 }

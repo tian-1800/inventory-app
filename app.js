@@ -8,8 +8,8 @@ const helmet = require("helmet");
 
 const inventoryRouter = require("./routes/inventory");
 
-// const { password, dbName } = require("./sensitive/credential");
-const [password, dbName] = [","];
+const { password, dbName } = require("./sensitive/credential");
+// const [password, dbName] = [","];
 const app = express();
 app.use(helmet());
 const mongoose = require("mongoose");
