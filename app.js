@@ -8,13 +8,13 @@ const helmet = require("helmet");
 
 const inventoryRouter = require("./routes/inventory");
 
-const { password, dbName } = require("./sensitive/credential");
-
+// const { password, dbName } = require("./sensitive/credential");
+const [password, dbName] = [","];
 const app = express();
 app.use(helmet());
 const mongoose = require("mongoose");
 const dev_db_url = `mongodb+srv://tian_1800:${password}@cluster0.auftx.mongodb.net/${dbName}?retryWrites=true&w=majority`;
-const mongoDB = process.env.MONGO_DB || dev_db_url;
+const mongoDB = process.env.MONGODB_URI || dev_db_url;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
