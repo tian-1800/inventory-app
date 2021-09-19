@@ -1,5 +1,6 @@
 const { body, validationResult } = require("express-validator");
-// const async = require("async");
+const Category = require("../models/category");
+const async = require("async");
 
 const Item = require("../models/item");
 
@@ -32,8 +33,11 @@ exports.item_detail = function (req, res, next) {
     });
 };
 
-exports.item_create_get = function (req, res) {
-  res.render("item_form", { title: "Create Item" });
+exports.item_create_get = function (req, res, next) {
+  Category.find({}, "name").exec(function (err, category_list) {
+    if (err) return next(err);
+    res.render("item_form", { title: "Create Item", category_list });
+  });
 };
 exports.item_create_post = [
   // Validation - Sanitation
@@ -94,23 +98,34 @@ exports.item_delete_get = function (req, res, next) {
 exports.item_delete_post = function (req, res, next) {
   Item.findByIdAndRemove(req.body.itemid, function deleteItem(err) {
     if (err) return next(err);
-    res.redirect("/inventory/items");
+    res.redirect("/items");
   });
 };
 
 exports.item_update_get = function (req, res, next) {
-  Item.findById(req.params.id).exec(function (err, results) {
-    if (err) return next(err);
-    if (results.item === null) {
-      const err = new Error("Item not found");
-      err.status = 404;
-      return next(err);
+  async.parallel(
+    {
+      item: function (callback) {
+        Item.findById(req.params.id).exec(callback);
+      },
+      category_list: function (callback) {
+        Category.find(callback);
+      },
+    },
+    function (err, results) {
+      if (err) return next(err);
+      if (results.item === null) {
+        const err = new Error("Item not found");
+        err.status = 404;
+        return next(err);
+      }
+      res.render("item_form", {
+        title: "Update Item",
+        item: results.item,
+        category_list: results.category_list,
+      });
     }
-    res.render("item_update", {
-      title: "Update Item",
-      item: results.item,
-    });
-  });
+  );
 };
 exports.item_update_post = [
   body("name", "Item Name Required").trim().isLength({ min: 1 }).escape(),
@@ -140,6 +155,7 @@ exports.item_update_post = [
       category: req.body.category,
       price: req.body.price,
       qtyInStock: req.body.qtyInStock,
+      _id: req.params.id,
     });
     if (!errors.isEmpty()) {
       res.render("item_form", {
@@ -148,7 +164,7 @@ exports.item_update_post = [
         errors: errors.array(),
       });
     } else
-      item.findByIdAndUpdate(req.params.id, item, {}, function (err, theitem) {
+      Item.findByIdAndUpdate(req.params.id, item, {}, function (err, theitem) {
         if (err) return next(err);
         res.redirect(theitem.url);
       });

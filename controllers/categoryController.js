@@ -136,22 +136,18 @@ exports.category_update_post = [
   body("description").optional({ checkFalsy: true }).trim().escape(),
   (req, res, next) => {
     const errors = validationResult(req, res, next);
-    const category = new Category({
+    const newCategory = new Category({
       name: req.body.name,
       description: req.body.description,
+      _id: req.params.id,
     });
     if (!errors.isEmpty()) {
       res.render("category_form", {
         title: "Create Category",
-        category: category,
+        category: newCategory,
         errors: errors.array(),
       });
-    } else {
-      const newCategory = new Category({
-        name: req.body.name,
-        description: req.body.description,
-        _id: req.params.id,
-      });
+    } else
       Category.findByIdAndUpdate(
         req.params.id,
         newCategory,
@@ -161,6 +157,5 @@ exports.category_update_post = [
           res.redirect(newCategory.url);
         }
       );
-    }
   },
 ];

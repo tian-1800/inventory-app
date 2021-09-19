@@ -1,11 +1,16 @@
-extends layout 
+extends layout
 
 block content
-    h1= title 
+  h1= title
 
-    article(class="item-article")
-    p(class="item-article__description")= item.description
-    p Price: $#{item.price}
-    p In Stock: $#{item.qtyInStock}
-    p Category: 
-        a(href=item.category.url) #{item.category.name}
+  article.item-article
+  p.item-article__description= item.description
+  p Price: $#{ item.price }
+  p In Stock: $#{ item.qtyInStock }
+  p Category:
+    a(href=item.category.url) #{ item.category.name }
+
+  p 
+    a(href=item.url + '/delete') Delete item
+  p 
+    a(href=item.url + '/update') Update item

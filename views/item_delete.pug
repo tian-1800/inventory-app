@@ -1,0 +1,8 @@
+extends layout
+
+block content
+  h1  #{ title } #{ item.name }
+  p Do you really want to delete this item?
+  form(method="POST", action="")
+    input.form-control(type="hidden", name="nameid", value=item.id)
+    button.btn-submit(type="submit") Delete

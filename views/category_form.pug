@@ -4,7 +4,7 @@ block content
   h1= title
   form(method="POST", action="")
     .form-group
-      label(for="category_name") Category name
+      label(for="category_name") Category name:
       input#category_name.form-control(
         type="text",
         name="name",
@@ -13,12 +13,11 @@ block content
         value=undefined === category ? '' : category.name
       )
     .form-group
-      label(for="category_description") Description
+      label(for="category_description") Description:
       input#category_description.form-control(
         type="text",
         name="description",
         placeholder="Description",
-        required="true",
         value=undefined === category ? '' : category.description
       )
     button.btn-submit(type="submit") Submit

@@ -1,0 +1,59 @@
+extends layout
+
+block content
+  h1= title
+  form(method="POST", action="")
+    .form-group
+      label(for="input_name") Item name:
+      input#input_name.form-control(
+        type="text",
+        name="name",
+        placeholder="input name",
+        required="true",
+        value=undefined === item ? '' : item.name
+      )
+    .form-group
+      label(for="item-description") Item Description:
+      input#item-description.form-control(
+        type="text",
+        name="description",
+        placeholder="Item Description",
+        value=undefined === item ? '' : item.description
+      )
+    .form-group
+      label(for="category") Category :
+      select#category.form-control(
+        type="select",
+        placeholder="Select category",
+        name="category",
+        required="true"
+      )
+        each category in category_list
+          if item
+            option(
+              value=category._id,
+              selected=category._id.toString() === item.category._id.toString() || category._id.toString() === item.category ? 'selected' : false
+            ) #{ category.name }
+          else
+            option(value=category._id) #{ category.name }
+    .form-group
+      label(for="price") Item Price:
+      input#price.form-control(
+        type="number",
+        name="price",
+        placeholder="Price",
+        value=item ? item.price : 0
+      )
+    .form-group
+      label(for="qtyInStock") Quantity In stock:
+      input#qtyInStock.form-control(
+        type="number",
+        name="qtyInStock",
+        placeholder="Quantity in stock",
+        value=item ? item.qtyInStock : 0
+      )
+    button.btn-submit(type="submit") Submit
+  if errors
+    ul
+      each error in errors
+        li error.msg
